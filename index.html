@@ -9,27 +9,49 @@
     <title>Document</title>
 </head>
 <body>
+  <div class="container py-2">
+    <p class="lead">Ingrese usuarios</p>
+    <form>
     <div class="mb-3">
-        <label type="text" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="Nombre">
+        <input type="text" class="form-control" id="nombre" placeholder="Ingrese un nombre">
       </div>
       <div class="mb-3">
-        <label class="form-label">Edad</label>
-        <input type="text" class="form-control" id="edad">
+        <input type="text" class="form-control" id="edad" placeholder="Ingrese una edad">
       </div>
-      <button type="button" class="btn btn-primary">Cargar Información</button>
-      <table class="table caption-top">
-        <caption>Lista de usuarios</caption>
-        <thead>
+    </form>
+      <button id="boton" type="reset" onclick="capturar()" class="btn btn-success">Agregar</button>
+      <table class="container" id="tabla">
+        <thead class="thead-inverse">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Edad</th>
+            <th>Nombre</th>
+            <th>Edad</th>
           </tr>
         </thead>
-        <tbody>
-          
-        </tbody>
+        
       </table>
+    </div>
+    <script>
+      function capturar(){
+        //console.log('capturado');
+        function Persona(nombre,edad){
+          this.nombre=nombre;
+          this.edad=edad;
+        }
+        var nombreCapturar = document.getElementById("nombre").value;
+        //console.log(nombreCapturar);
+        var edadCapturar = document.getElementById("edad").value;
+        //console.log(edadCapturar);
+        nuevoSujeto = new Persona(nombreCapturar,edadCapturar);
+        //console.log(nuevoSujeto);
+        agregar();
+      };
+      var baseDatos=[];
+      function agregar(){
+        baseDatos.push(nuevoSujeto)  
+        //console.log(baseDatos);
+        document.getElementById("tabla").innerHTML += '<tbody><td>'+nuevoSujeto.nombre+'</td><td>'+nuevoSujeto.edad+'</td></tbody>'
+      };
+
+    </script>
 </body>
 </html>
